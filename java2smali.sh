@@ -27,7 +27,7 @@ Configured through config.sh
 
 	\$J2S_SDKS               Path to a directory to look for sdks ( used by -s and \$J2S_DEFAULT_SDK )
 	\$J2S_DEFAULT_SDK        Default sdk jar name ( looks for file in \$J2S_SDKS )
-	\$J2S_FRAMEWORK          Path to any android framework jar ( /system/framework/framework.jar )
+	\$J2S_FRAMEWORK          Path to any android framework jar ( optional )
 	\$J2S_DX                 Path to dx script ( found in android build-tools )
 	\$J2S_BAKSMALI           Path to baksmali.jar
 
@@ -38,6 +38,7 @@ EOF
 function compile() {
 
 	local source_file="$1"
+	local sdk_dir="$J2S_SDKS"
 	local sdk_file="$sdk_dir/$2"
 	local output="$3"
 	local verbose="$4"
@@ -54,8 +55,12 @@ function compile() {
 
 	mkdir -p "$j2s_dir/temp/cls/"
 
-	javac $verbose -classpath "$sdk_file" -classpath "$J2S_FRAMEWORK" "$j2s_dir/temp/$real_name" -d "$j2s_dir/temp/cls/"
+	if [[ -f $J2S_FRAMEWORK ]];then
+		javac $verbose -classpath "$sdk_file" -classpath "$J2S_FRAMEWORK" "$j2s_dir/temp/$real_name" -d "$j2s_dir/temp/cls/"
+	else
+		javac $verbose -classpath "$sdk_file" "$j2s_dir/temp/$real_name" -d "$j2s_dir/temp/cls/"
 
+	fi
 
 	if [[ $? -ne 0 ]];then
 
@@ -158,6 +163,8 @@ if [[ -f "$1" ]];then
 		echo "Sdk not specified : Setting to $J2S_DEFAULT_SDK"
 		sdk_arg="$J2S_DEFAULT_SDK"
 	fi
+
+	[[ -f "$J2S_FRAMEWORK" ]] && echo "Framework : $J2S_FRAMEWORK"
 
 	compile "$1" "$sdk_arg" "$output_arg" "$verbose_arg"
 
