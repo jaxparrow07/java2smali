@@ -89,8 +89,8 @@ function compile() {
 set -o errexit -o pipefail -o noclobber -o nounset
 
 ! getopt --test > /dev/null 
-if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
-    exit 1
+if [[ ${PIPESTATUS[0]} -ne 4 ]];then
+	exit 1
 fi
 
 OPTIONS=s:o:vh
@@ -98,7 +98,7 @@ LONGOPTS=sdk:,out:,verbose,help
 
 ! PARSED=$(getopt --options=$OPTIONS --longoptions=$LONGOPTS --name "$0" -- "$@")
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
-    exit 2
+	exit 2
 fi
 
 eval set -- "$PARSED"
@@ -106,16 +106,16 @@ eval set -- "$PARSED"
 sdk_arg="default" output_arg="D-E=F-@-U-/_-T" verbose_arg=
 
 while true; do
-    case "$1" in
-    	-h|--help)
+	case "$1" in
+		-h|--help)
 			showhelp
 			exit
 			;;
-        -s|--sdk)
-            sdk_arg=$2
-            shift 2
-            ;;
-        -v|--verbose)
+		-s|--sdk)
+			sdk_arg=$2
+			shift 2
+			;;
+		-v|--verbose)
 			verbose_arg="-verbose"
 			shift
 			;;
@@ -123,20 +123,20 @@ while true; do
 			output_arg="$(realpath $2)"
 			shift 2
 			;;
-        --)
-            shift
-            break
-            ;;
-        *)
-            echo "Programming error"
-            exit 3
-            ;;
-    esac
+		--)
+			shift
+			break
+			;;
+		*)
+			echo "Programming error"
+			exit 3
+			;;
+	esac
 done
 
 if [[ $# -ne 1 ]];then
-    echo "error: A single input file is required."
-    exit 4
+	echo "error: A single input file is required."
+	exit 4
 fi
 
 if [[ -f "$1" ]];then
