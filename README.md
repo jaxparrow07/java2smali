@@ -24,10 +24,10 @@ Options:
 The script can be configured through `config.sh` which will be sourced upon running.
 | Variable | Usage | Downloads/Source |
 | -------- | -------| ---------| 
-| **J2S_SDKS** | _Path to a directory to look for android sdks ( used by -s and **$J2S_DEFAULT_SDK** )_ | ![Unoffical Github Repo](https://github.com/Sable/android-platforms) or ![Online Android SDK Manager](https://androidsdkmanager.azurewebsites.net/SDKPlatform)
+| **J2S_SDKS** | _Path to a directory to look for android sdks ( used by -s and **$J2S_DEFAULT_SDK** )_ | ![Unoffical Github Repo](https://github.com/Sable/android-platforms/) or ![Online Android SDK Manager](https://androidsdkmanager.azurewebsites.net/SDKPlatform/)
 | **J2S_DEFAULT_SDK** | _Default sdk jar name ( looks for file in **$J2S_SDKS** )_ | N/A
 | **J2S_FRAMEWORK** | _Path to any android framework jar ( leave the value empty if you don't have any )_ | found in `/system/framework/` of android ( use adb pull to retrieve )
-| **J2S_DX** | _Path to dx script ( found in android build-tools )_ | ![Offical (Command line tools)](https://developer.android.com/studio?gclid=CjwKCAjw_tWRBhAwEiwALxFPocQHQFiaP-IHElvKEKjM1AnzbpYFlGK6opyUFyTmWTyK8IXRxQ5UsBoC-xkQAvD_BwE&gclsrc=aw.ds) or ![Online Android SDK Manager](https://androidsdkmanager.azurewebsites.net/Buildtools)
+| **J2S_DX** | _Path to dx script ( found in android build-tools )_ | ![Offical (Command line tools)](https://developer.android.com/studio/) or ![Online Android SDK Manager](https://androidsdkmanager.azurewebsites.net/Buildtools/)
 | **J2S_BAKSMALI** | _Path to baksmali.jar_ | ![Offical Github Repo](https://github.com/JesusFreke/smali)
 
 ## Note
